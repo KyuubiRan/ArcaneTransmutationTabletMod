@@ -37,6 +37,8 @@ object ArcaneTabletMod : IModBusEvent {
         ATModItems.REGISTRY.register(MOD_BUS)
         ATModMenus.REGISTRY.register(MOD_BUS)
 
+        MOD_BUS.addListener(::onClientSetup)
+        MOD_BUS.addListener(::onServerSetup)
         MOD_BUS.addListener(::addCreative)
 
         MOD_BUS.register(NetworkHandler)
@@ -67,7 +69,6 @@ object ArcaneTabletMod : IModBusEvent {
     fun onCommonSetup(event: FMLCommonSetupEvent) {
         LOGGER.log(Level.INFO, "Hello! This is working!")
     }
-
 
     fun addCreative(event: BuildCreativeModeTabContentsEvent) {
         if (event.tabKey == PECreativeTabs.PROJECTE.key) {

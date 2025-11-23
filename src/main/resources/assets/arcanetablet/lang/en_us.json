@@ -1,3 +1,9 @@
 {
-  "item.arcanetablet.arcane_tablet": "Arcane Transmutation Tablet"
+  "item.arcanetablet.arcane_tablet": "Arcane Transmutation Tablet",
+
+  "gui.arcanetablet.arcane_tablet.learn": "Learn",
+  "gui.arcanetablet.arcane_tablet.unlearn": "Unlearn",
+  "gui.arcanetablet.arcane_tablet.rotate": "Rotate",
+  "gui.arcanetablet.arcane_tablet.balance": "Balance",
+  "gui.arcanetablet.arcane_tablet.clear": "Clear"
 }

@@ -1,9 +1,11 @@
 package me.kyuubiran.arcanetablet.util
 
 import moze_intel.projecte.api.ItemInfo
+import moze_intel.projecte.api.capabilities.PECapabilities
 import moze_intel.projecte.config.ProjectEConfig
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
+import java.math.BigInteger
 
 internal object ATExtensions {
 
@@ -15,9 +17,13 @@ internal object ATExtensions {
 
     val ItemStack.eHasEmcValue get() = ATUtils.EMCProxy.hasValue(this)
 
+    val ItemStack.eEmc get() = ATUtils.EMCProxy.getValue(this)
+
     val ItemInfo.persistentInfo get() = ATUtils.EMCProxy.getPersistentInfo(this)
 
-    val ItemStack.eInfo get() = ItemInfo.fromStack(this)
+    val ItemStack.eInfo: ItemInfo get() = ItemInfo.fromStack(this)
+
+    val Player.eEmc: BigInteger get() = this.getCapability(PECapabilities.KNOWLEDGE_CAPABILITY)?.emc ?: BigInteger.ZERO
 
     val ItemStack.persistentInfo get() = ATUtils.EMCProxy.getPersistentInfo(this.eInfo)
 

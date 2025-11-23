@@ -1,3 +1,9 @@
 {
-  "item.arcanetablet.arcane_tablet": "奥术转化桌"
+  "item.arcanetablet.arcane_tablet": "奥术转化桌",
+
+  "gui.arcanetablet.arcane_tablet.learn": "学习",
+  "gui.arcanetablet.arcane_tablet.unlearn": "遗忘",
+  "gui.arcanetablet.arcane_tablet.rotate": "旋转",
+  "gui.arcanetablet.arcane_tablet.balance": "平均分配",
+  "gui.arcanetablet.arcane_tablet.clear": "清除"
 }
