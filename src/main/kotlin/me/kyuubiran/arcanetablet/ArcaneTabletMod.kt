@@ -7,6 +7,7 @@ import me.kyuubiran.arcanetablet.menu.ATModMenus
 import me.kyuubiran.arcanetablet.network.EmcSyncHandler
 import me.kyuubiran.arcanetablet.network.NetworkHandler
 import moze_intel.projecte.gameObjs.registries.PECreativeTabs
+import net.minecraft.world.item.CreativeModeTab
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.event.IModBusEvent
@@ -36,9 +37,12 @@ object ArcaneTabletMod : IModBusEvent {
         ATModItems.REGISTRY.register(MOD_BUS)
         ATModMenus.REGISTRY.register(MOD_BUS)
 
+        MOD_BUS.addListener(::addCreative)
+
         MOD_BUS.register(NetworkHandler)
         MOD_BUS.register(ATDataGen)
         MOD_BUS.register(ATClientSetup)
+
 
         FORGE_BUS.addListener(EmcSyncHandler::onServerTick)
     }
@@ -64,9 +68,9 @@ object ArcaneTabletMod : IModBusEvent {
         LOGGER.log(Level.INFO, "Hello! This is working!")
     }
 
-    @SubscribeEvent
-    fun onCreateTabEvent(event: BuildCreativeModeTabContentsEvent) {
-        if (event.tabKey == PECreativeTabs.PROJECTE.get()) {
+
+    fun addCreative(event: BuildCreativeModeTabContentsEvent) {
+        if (event.tabKey == PECreativeTabs.PROJECTE.key) {
             event.accept(ATModItems.ARCANE_TABLET)
         }
     }
