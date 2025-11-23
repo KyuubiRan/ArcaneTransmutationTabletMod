@@ -36,10 +36,10 @@ object ArcaneTabletMod : IModBusEvent {
         ATModItems.REGISTRY.register(MOD_BUS)
         ATModMenus.REGISTRY.register(MOD_BUS)
 
+        MOD_BUS.register(NetworkHandler)
         MOD_BUS.register(ATDataGen)
         MOD_BUS.register(ATClientSetup)
 
-        FORGE_BUS.register(NetworkHandler)
         FORGE_BUS.addListener(EmcSyncHandler::onServerTick)
     }
 
