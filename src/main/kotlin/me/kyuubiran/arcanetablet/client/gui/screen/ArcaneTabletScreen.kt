@@ -79,6 +79,7 @@ class ArcaneTabletScreen(
                 setMaxLength(35)
                 value = searchTextContent
                 setInitialFocus()
+                isFocused = true
             }
         )
 
@@ -160,8 +161,10 @@ class ArcaneTabletScreen(
 
     override fun keyPressed(keyCode: Int, scanCode: Int, modifiers: Int): Boolean = when (keyCode) {
         GLFW.GLFW_KEY_ESCAPE -> {
-            if (searchTextField.isFocused) searchTextField.isFocused = false
-            else player.closeContainer()
+            if (searchTextField.isFocused)
+                searchTextField.isFocused = false
+            else
+                player.closeContainer()
             true
         }
 
@@ -170,12 +173,13 @@ class ArcaneTabletScreen(
             true
         }
 
-        else -> {
-            if (!searchTextField.isFocused) {
-                super.keyPressed(keyCode, scanCode, modifiers)
-            } else
-                true
-        }
+        else -> if (searchTextField.isFocused) searchTextField.keyPressed(keyCode, scanCode, modifiers)
+        else super.keyPressed(keyCode, scanCode, modifiers)
+    }
+
+    override fun charTyped(codePoint: Char, modifiers: Int): Boolean {
+        return if (searchTextField.charTyped(codePoint, modifiers)) true
+        else super.charTyped(codePoint, modifiers)
     }
 
     override fun renderBg(gui: GuiGraphics, partialTick: Float, mouseX: Int, mouseY: Int) {
